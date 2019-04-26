@@ -1,0 +1,34 @@
+Sub ImportFromAccess1()
+
+    Dim db1 As Database
+    Dim recSet As Recordset
+    Dim strConnect As String
+
+    Set db1 = OpenDatabase("Database location")
+   
+    Set recSet = db1.OpenRecordset("QueryName")
+
+    With ActiveSheet.QueryTables.Add(Connection:=recSet, Destination:=Range("$A$1"))
+        .Name = "Connection"
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .BackgroundQuery = True
+        .RefreshStyle = xlInsertDeleteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = True
+        .RefreshPeriod = 0
+        .PreserveColumnInfo = True
+        .Refresh BackgroundQuery:=False
+
+    End With
+
+    recSet.Close
+    db1.Close
+    Set recSet = Nothing
+    Set db1 = Nothing
+    
+    
+End Sub
