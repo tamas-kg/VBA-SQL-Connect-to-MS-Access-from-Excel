@@ -1,0 +1,35 @@
+Public Sub SQLInsertIntoDB()
+
+' the method used below is referred to as late binding because we are not referencing the ADODB library
+' in case of early binding you have to select ActiveX Data Objects x.x Library from the referrences and do the declaration as so:
+
+'Dim cn As ADODB.Connection
+'Set cn = New ADODB.Connection
+
+'cn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & dbPath & ";Persist Security Info=False;"
+
+'cn.Open
+
+'SQL goes here same as with late binding
+
+'cn.Close
+
+'------------------------------------------
+
+    Dim cn As Object
+
+    Set cn = CreateObject("ADODB.Connection")
+  
+    dbPath = "\\gBTcsm0010.emea.givaudan.com\HomeDirS$\kompogat\Desktop\Buchu Oil Monitor.accdb"
+      
+    scn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & dbPath & ";Persist Security Info=False;"
+     
+    cn.Open scn
+    
+    sql = "INSERT INTO QueryName SELECT * FROM [Sheet1$] IN '" & ThisWorkbook.FullName & "' 'Excel 8.0;'"
+    
+    cn.Execute sql
+   
+    Set cn = Nothing
+    
+End Sub
