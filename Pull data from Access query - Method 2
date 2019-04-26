@@ -1,0 +1,22 @@
+Sub ImportFromAccess2()
+
+    Dim db As DAO.Database
+    Dim recSet As DAO.Recordset
+    Dim SQL As String
+
+    Set db = OpenDatabase("Database location")
+   
+    SQL = "SELECT * FROM QueryName"
+    
+    Set recSet = db.OpenRecordset(SQL, dbOpenSnapshot)
+    
+    Worksheets("Sheet1").Select
+    Range("A2").CopyFromRecordset recSet1
+    
+    recSet.Close
+    db.Close
+    
+    Set recSet = Nothing
+    Set db = Nothing
+    
+End Sub
