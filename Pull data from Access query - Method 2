@@ -13,13 +13,13 @@ Sub ImportFromAccess2()
     Worksheets("Sheet1").Select
     Range("A2").CopyFromRecordset recSet1
     
-        'Or, if you want to update pivot tables, you can use
-        ' With Worksheets("Sheet1").PivotTables("PivotTable1").PivotCache
-        '
-        'Set .Recordset = recSet
-        '    .Refresh
-
-    End With
+'   Or, if you want to update pivot tables, you can use
+'   With Worksheets("Sheet1").PivotTables("PivotTable1").PivotCache
+'
+'   Set .Recordset = recSet
+'       .Refresh
+'
+'   End With
     
     recSet.Close
     db.Close
